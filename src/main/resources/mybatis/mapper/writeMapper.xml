@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace = "mybatis.springstudy.write.mapper">
+<mapper namespace = "mybatis.springstudy.write.mapper.WriteMapper">
 
-    <insert id="insertWrite">
-        INSERT INTO Writes
-        (
-            id,
-            title,
-            content,
-            writer
-        )
-        VALUES
-            (
-                #{id}
-                #{title},
-                #{content},
-                #{writer}
-            )
+    <select id="getListWrite" resultType="writes">
+        SELECT WRITE_ID
+             , TITLE
+             , CONTENT
+             , WRITER
+             , REG_DATE
+             , UPDATE_DATE
+             , DELETE_DATE
+        FROM writes
+    </select>
+
+    <insert id="insertWrites" parameterType="Writes" useGeneratedKeys="true" keyProperty="writeId">
+        INSERT INTO writes (title, content, writer, reg_date, update_date, delete_date)
+                    VALUES (#{title}, #{content}, #{writer}, #{regDate}, #{updateDate}, #{deleteDate})
     </insert>
 
 </mapper>
