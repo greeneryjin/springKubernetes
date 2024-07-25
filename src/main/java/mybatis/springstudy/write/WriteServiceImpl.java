@@ -19,7 +19,7 @@ public class WriteServiceImpl implements WriteService {
 
     @Override
     public void insertWrites(WriteDto writeDto) {
-        Writes writes = new Writes(writeDto.getTitle(), writeDto.getContent(), "김어진");
+        Writes writes = new Writes(writeDto.getTitle(), writeDto.getContent(), writeDto.getWriter());
         writeMapper.insertWrites(writes);
     }
 

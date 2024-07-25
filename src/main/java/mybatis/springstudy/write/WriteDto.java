@@ -22,4 +22,5 @@ public class WriteDto {
         this.content = writes.getContent();
         this.writer = writes.getWriter();
     }
+    
 }
