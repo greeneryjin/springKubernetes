@@ -16,11 +16,13 @@ public class WriteDto {
     private String title;
     private String content;
     private String writer;
+    private String regDate;
 
     public WriteDto(Writes writes) {
         this.title = writes.getTitle();
         this.content = writes.getContent();
         this.writer = writes.getWriter();
+        this.regDate = writes.getRegDate().toString();
     }
     
 }
