@@ -3,7 +3,10 @@ package mybatis.springstudy.account;
 
 public interface AccountService {
 
-    void userInsert(AccountDto accountDto);
+    void accountInsert(AccountDto accountDto);
 
-    String userLogin()
+    ResLoginDto accountLogin(AccountLoginDto accountLoginDto);
+
+
+    void AccountDelete(String accountId);
 }

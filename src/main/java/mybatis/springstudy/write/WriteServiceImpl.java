@@ -1,14 +1,14 @@
 package mybatis.springstudy.write;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import mybatis.springstudy.write.mapper.WriteMapper;
-import org.slf4j.Logger;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -18,16 +18,22 @@ public class WriteServiceImpl implements WriteService {
     private final WriteMapper writeMapper;
 
     @Override
-    public void insertWrites(WriteDto writeDto) {
-        Writes writes = new Writes(writeDto.getTitle(), writeDto.getContent(), writeDto.getWriter());
+    public void insertWrites(RegWriteDto regWriteDto) {
+        Writes writes = new Writes(regWriteDto.getTitle(), regWriteDto.getContent(), regWriteDto.getWriter());
         writeMapper.insertWrites(writes);
     }
 
     @Override
-    public List<WriteDto> getListWrite() {
-        List<Writes> listWrite = writeMapper.getListWrite();
-        return listWrite.stream()
-                .map(WriteDto::new)
-                .collect(Collectors.toList());
+    public Page<Map<String, Object>> getListWrite(Writes writes, Pageable pageable) {
+
+        // 빌더 패턴으로 data, pageable 파라미터에 데이터 주입
+        RequestList<?> requestList = RequestList.builder()
+                .data(writes)
+                .pageable(pageable)
+                .build();
+
+        List<Map<String, Object>> content =  writeMapper.getListWrite(requestList);
+        int total = writeMapper.getListWritesCount(writes);
+        return new PageImpl<>(content, pageable, total);
     }
 }

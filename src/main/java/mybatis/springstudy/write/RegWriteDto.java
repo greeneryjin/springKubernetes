@@ -1,17 +1,17 @@
-package mybatis.springstudy.account;
+package mybatis.springstudy.write;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AccountLoginDto {
+public class RegWriteDto {
 
-    private String userId;
-    private String userPw;
-    
+    private String title;
+    private String content;
+    private String writer;
 }

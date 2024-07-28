@@ -2,9 +2,11 @@ package mybatis.springstudy.util;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+@Component
 public class JwtUtil {
 
     private static final String SECRET_KEY = "secret_key";

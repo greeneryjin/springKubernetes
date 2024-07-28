@@ -9,9 +9,10 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AccountLoginDto {
+public class ResLoginDto {
 
-    private String userId;
-    private String userPw;
-    
+    private Long accountId;
+    private String name;
+    private String token;
+
 }

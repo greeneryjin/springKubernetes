@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "mybatis.springstudy.account.mapper.AccountMapper">
+
+    <insert id="insertAccount" parameterType="Account" useGeneratedKeys="true" keyProperty="accountId">
+        INSERT INTO account (name, userId, userPw)
+        VALUES (#{name}, #{userId}, #{userPw})
+    </insert>
+
+    <select id="findAccountByUserId" resultType="Account">
+        SELECT accountId
+             , name
+             , userId
+             , userPw
+        FROM account
+    </select>
+
+</mapper>
