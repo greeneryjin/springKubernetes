@@ -15,14 +15,29 @@
         writer,
         reg_date
         FROM writes
-        <where>
-            <if test="data.title != null and data.title != ''">
-                AND title LIKE CONCAT('%', #{data.title}, '%')
-            </if>
-            <if test="data.writer != null and data.writer != ''">
-                AND writer LIKE CONCAT('%', #{data.writer}, '%')
-            </if>
-        </where>
+        LIMIT ${pageable.offset} , ${pageable.pageSize}
+    </select>
+
+    <select id="getQueryWrite" parameterType="RequestList" resultType="writes">
+        SELECT write_id,
+        title,
+        content,
+        writer,
+        reg_date
+        FROM writes
+        where state = 'ACTIVE'
+            AND (
+                <if test="data.title != null and data.title != ''">
+                    title LIKE CONCAT('%', #{title}, '%')
+                </if>
+                <if test="data.title != null and data.title != '' and data.content != null and data.content != ''">
+            OR
+                </if>
+                <if test="content != null and content != ''">
+                    content LIKE CONCAT('%', #{content}, '%')
+                </if>
+            )
+        where
         LIMIT ${pageable.offset} , ${pageable.pageSize}
     </select>
 

@@ -10,9 +10,15 @@ import java.util.Map;
 @Mapper
 public interface WriteMapper {
 
-    List<Map<String, Object>> getListWrite(RequestList<?> requestList);
+    void insertWrites(Writes writes);
 
     int getListWritesCount(Writes writes);
 
-    void insertWrites(Writes writes);
+    List<Map<String, Object>> getListWrite(RequestList<?> requestList);
+
+    List<Map<String, Object>> getQueryWrite(String query, Map<String, Object> paramMap);
+
+    Writes getDetailWrite(Long write_id);
+
+    List<Map<String, Object>> getMyWrite(RequestList<?> requestList);
 }

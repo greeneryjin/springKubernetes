@@ -11,5 +11,8 @@ public interface WriteService {
 
     void insertWrites(RegWriteDto regWriteDto);
     Page<Map<String, Object>> getListWrite(Writes writes, Pageable pageable);
+    Page<Map<String, Object>> getQueryWrite(Map<String, Object> paramMap, String query, Pageable pageable);
+    Writes getDetailWrite(Long writeId);
+    Page<Map<String, Object>> getMyWrite(Writes writes, Pageable pageable);
 }
 

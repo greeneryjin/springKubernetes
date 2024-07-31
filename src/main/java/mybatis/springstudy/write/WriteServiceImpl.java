@@ -36,4 +36,25 @@ public class WriteServiceImpl implements WriteService {
         int total = writeMapper.getListWritesCount(writes);
         return new PageImpl<>(content, pageable, total);
     }
+
+    @Override
+    public Page<Map<String, Object>> getQueryWrite(Map<String, Object> paramMap, String query, Pageable pageable) {
+
+        paramMap.put("offset", pageable.getOffset());
+        paramMap.put("pageSize", pageable.getPageSize());
+
+        List<Map<String, Object>> content =  writeMapper.getQueryWrite(query, paramMap);
+        int total = writeMapper.getListWritesCount(writes);
+        return new PageImpl<>(content, pageable, total);
+    }
+
+    @Override
+    public Writes getDetailWrite(Long writeId) {
+        return null;
+    }
+
+    @Override
+    public Page<Map<String, Object>> getMyWrite(Writes writes, Pageable pageable) {
+        return null;
+    }
 }
